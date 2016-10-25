@@ -24,9 +24,7 @@ component Sumador is
 end component;
 
 component instructionMemory is
-    Port ( 
-			  --clk : in STD_LOGIC;
-			  address : in  STD_LOGIC_VECTOR (31 downto 0);
+    Port ( address : in  STD_LOGIC_VECTOR (31 downto 0);
            reset : in  STD_LOGIC;
            outInstruction : out  STD_LOGIC_VECTOR (31 downto 0));
 end component;
@@ -41,14 +39,14 @@ component RegisterFile is
 			  rst: in STD_LOGIC);
 end component;
 
-component UControl is
+component UC is
     Port ( OP : in  STD_LOGIC_VECTOR (1 downto 0);
            OP3 : in  STD_LOGIC_VECTOR (5 downto 0);
            OPOut : out  STD_LOGIC_VECTOR (5 downto 0));
 end component;
 
 component ALU is
-    Port ( ALU_Op : in  STD_LOGIC_VECTOR (5 downto 0);
+    Port (Modo : in  STD_LOGIC_VECTOR (5 downto 0);
            S0 : in  STD_LOGIC_VECTOR (31 downto 0);
            S1 : in  STD_LOGIC_VECTOR (31 downto 0);
            ALU_Out : out  STD_LOGIC_VECTOR (31 downto 0));
@@ -102,14 +100,14 @@ Inst_RegisterFile: RegisterFile PORT MAP(
 		rst => RESET
 	);
 	
-Inst_UControl: UControl PORT MAP(
+Inst_UC: UC PORT MAP(
 		OP => IM_to_RFandUC(31 downto 30),
 		OP3 => IM_to_RFandUC(24 downto 19),
 		OPOut => UC_to_ALU
 	);
 
 Inst_ALU: ALU PORT MAP(
-		ALU_Op => UC_to_ALU,
+		Modo => UC_to_ALU,
 		s0 => RF_to_ALU1,
 		S1 => RF_to_ALU2,
 		ALU_Out => ALU_to_RF 

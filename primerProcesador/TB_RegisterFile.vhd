@@ -2,7 +2,9 @@
 LIBRARY ieee;
 USE ieee.std_logic_1164.ALL;
  
-
+-- Uncomment the following library declaration if using
+-- arithmetic functions with Signed or Unsigned values
+--USE ieee.numeric_std.ALL;
  
 ENTITY TB_RegisterFile IS
 END TB_RegisterFile;
@@ -34,7 +36,9 @@ ARCHITECTURE behavior OF TB_RegisterFile IS
  	--Outputs
    signal Crs1 : std_logic_vector(31 downto 0);
    signal Crs2 : std_logic_vector(31 downto 0);
-   
+   -- No clocks detected in port list. Replace <clock> below with 
+   -- appropriate port name 
+ 
  
 BEGIN
  
@@ -49,23 +53,29 @@ BEGIN
           rst => rst
         );
 
-  
+
+
    -- Stimulus process
    stim_proc: process
    begin		
-		   Rs1 <= "00001";
-			Rs2 <= "00110";
-			Rsd <= "00011";
-			rst <= '0';
-			DataToWrite <= "00000000000000000000000001001000";
-			wait for 100 ns;
-			
-			Rs1 <= "00000";
-			Rs2 <= "01010";
-			Rsd <= "00000";
-			rst <= '0';
-			DataToWrite <= "00000000000000000000000000001000";
-			wait;
+-- hold reset state for 100 ns.
+		Rs1 <= "00001";
+		Rs2 <= "00010";
+		Rsd <= "00000";
+      wait for 100 ns;
+
+		Rs1 <= "00011";
+		Rs2 <= "00110";
+		Rsd <= "00010";
+		DataToWrite <= "00000000001111100000000001111100";
+      wait for 100 ns;
+		
+		Rs1 <= "00011";
+		Rs2 <= "01010";
+		Rsd <= "00001";
+      wait for 100 ns;
+      -- insert stimulus here 
+      wait;
    end process;
 
 END;

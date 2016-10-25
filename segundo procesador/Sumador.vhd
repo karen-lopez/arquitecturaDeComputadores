@@ -11,7 +11,7 @@ end Sumador;
 architecture Behavioral of Sumador is
 
 begin
-Data_Out <= (Constante or Data_In );
+Data_Out <= (Constante + Data_In );
 
 end Behavioral;
 

@@ -14,7 +14,7 @@ end RegisterFile;
 
 architecture Behavioral of RegisterFile is 
 
-    type ram_type is array (0 to 31) of std_logic_vector (31 downto 0);                 
+    type ram_type is array (0 to 39) of std_logic_vector (31 downto 0);                 
     signal RAM : ram_type := (others =>"00000000000000000000000000000000");                        	
 begin
 
@@ -23,7 +23,8 @@ begin
 					if(rst = '1')then
 						Crs1 <= (others => '0');
 						Crs2 <= (others => '0');
-					
+						RAM <=(others =>"00000000000000000000000000000000");
+						
 					else
 						Crs1 <= RAM(conv_integer(Rs1));
 						Crs2 <= RAM(conv_integer(Rs2));
@@ -33,3 +34,5 @@ begin
 					end if;
 		end process;
 end Behavioral;
+
+
