@@ -44,7 +44,11 @@ int divicion(int a,int b){
 }
 
 int main(){
-     cout<<mul(3,6)<<endl;
-     
+    int k[5]={6,7,8,9,2};
+     cout<<"multiplicacion de 3*6 "<<mul(3,6)<<endl;
+     cout<<"potencia 4 y 3 "<<pot(4,3)<<endl;
+     cout<<"factor 5 "<<facto(5)<<endl;
+     cout<<"divicion 10 y 3 "<<divicion(10,3)<<endl;
+     cout<<"polinomio x=4, k=[6,7,8,9,2], n=5 "<<pol(4,k,5)<<endl;
      return 0;
      }
