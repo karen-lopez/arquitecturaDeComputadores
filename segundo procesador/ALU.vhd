@@ -31,7 +31,7 @@ begin
 			ALU_Out <= not(S0 xor S1);
 		when "000101" =>  -- NAnd
 			ALU_Out <= not(S0 and S1);
-		when others => ALU_Out<="11111111111111111111111111111111";
+		when others => ALU_Out<="00000000000000000000000000000000";
 	end case;
 end process;
 
